@@ -1,0 +1,486 @@
+openapi: 3.0.3
+info:
+  title: CarGurus Developer APIs
+  description: >-
+    Documented HTTP APIs published by CarGurus under the /Cars/api/ path. Four
+    surfaces are described here: the open (no-auth) Car Selector API for building
+    new/used listing search widgets, and three partner/dealer-gated APIs -
+    Instant Market Value (IMV), Dealer Reviews, and Dealer Stats. The gated APIs
+    authenticate with an appId and authToken issued by CarGurus and are passed as
+    query parameters alongside a JSON body. Endpoint paths, methods, and the Car
+    Selector, IMV, and Dealer Reviews schemas are taken directly from CarGurus
+    developer documentation; the Dealer Stats response is modeled from CarGurus
+    documentation and published examples (endpointsModeled). CarGurus does not
+    publish a public inventory-listings pull API - dealer inventory is ingested
+    via inventory feeds (feed providers / IMT) - and leads are delivered to
+    dealer CRMs rather than exposed here.
+  version: '1.0'
+  contact:
+    name: CarGurus Developers
+    url: https://www.cargurus.com/Cars/developers/
+servers:
+  - url: https://www.cargurus.com/Cars/api/1.0
+    description: CarGurus API v1.0 (Car Selector, IMV, Dealer Reviews)
+  - url: https://www.cargurus.com/Cars/api/2.0
+    description: CarGurus API v2.0 (Dealer Stats)
+tags:
+  - name: Car Selector
+    description: Open API for building new/used listing search widgets.
+  - name: Instant Market Value
+    description: Retrieve CarGurus Instant Market Value and deal rating for cars.
+  - name: Dealer Reviews
+    description: Retrieve sales reviews for a specific dealer.
+  - name: Dealer Stats
+    description: Retrieve dealer inventory performance statistics.
+paths:
+  /carselector/listMakes.action:
+    get:
+      tags:
+        - Car Selector
+      summary: List makes
+      description: >-
+        List the vehicle makes available for a NEW or USED search, in
+        alphabetical order, along with the available search distances. No
+        authentication required.
+      operationId: listMakes
+      parameters:
+        - name: searchType
+          in: query
+          required: true
+          description: Type of search - NEW or USED.
+          schema:
+            type: string
+            enum: [NEW, USED]
+      responses:
+        '200':
+          description: Makes and distances.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListMakesResponse'
+  /carselector/listModels.action:
+    get:
+      tags:
+        - Car Selector
+      summary: List models
+      description: List the models for a given make, in alphabetical order.
+      operationId: listModels
+      parameters:
+        - name: searchType
+          in: query
+          required: true
+          schema:
+            type: string
+            enum: [NEW, USED]
+        - name: makeId
+          in: query
+          required: true
+          description: Make id as returned by listMakes.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Models for the make.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListModelsResponse'
+  /carselector/listingSearch.action:
+    get:
+      tags:
+        - Car Selector
+      summary: Listing search redirect
+      description: >-
+        Construct the URL a user is redirected to when they submit the search
+        form. Returns a CarGurus listing search results page.
+      operationId: listingSearch
+      parameters:
+        - name: searchType
+          in: query
+          required: true
+          schema:
+            type: string
+            enum: [NEW, USED]
+        - name: entityId
+          in: query
+          required: true
+          description: Make or Model entity id selected by the user.
+          schema:
+            type: string
+        - name: postalCode
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: distance
+          in: query
+          required: true
+          schema:
+            type: integer
+        - name: affiliatePartner
+          in: query
+          required: false
+          description: Optional affiliate partner identifier.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: CarGurus listing search results page.
+  /imvRequest.action:
+    post:
+      tags:
+        - Instant Market Value
+      summary: Get Instant Market Value
+      description: >-
+        Retrieve the CarGurus Instant Market Value and deal rating for one or
+        more cars. Requires an appId and authToken issued by CarGurus, plus a
+        JSON body describing the listings.
+      operationId: imvRequest
+      parameters:
+        - name: appId
+          in: query
+          required: true
+          description: Application id provided by CarGurus.
+          schema:
+            type: string
+        - name: authToken
+          in: query
+          required: true
+          description: Authentication token provided by CarGurus.
+          schema:
+            type: string
+        - name: body
+          in: query
+          required: true
+          description: JSON representation of the ImvRequest object.
+          schema:
+            $ref: '#/components/schemas/ImvRequest'
+      responses:
+        '200':
+          description: Instant Market Value response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImvResponse'
+  /dealerReviewsRequest.action:
+    post:
+      tags:
+        - Dealer Reviews
+      summary: Get dealer reviews
+      description: >-
+        Retrieve sales reviews for a specific CarGurus dealer. Requires an appId
+        and authToken issued by CarGurus.
+      operationId: dealerReviewsRequest
+      parameters:
+        - name: appId
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: authToken
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: body
+          in: query
+          required: true
+          description: JSON representation of the DealerReviewsRequest object.
+          schema:
+            $ref: '#/components/schemas/DealerReviewsRequest'
+      responses:
+        '200':
+          description: Dealer reviews response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DealerReviewsResponse'
+  /dealerStatsRequest.action:
+    post:
+      tags:
+        - Dealer Stats
+      summary: Get dealer stats
+      description: >-
+        Retrieve inventory performance statistics for a dealer (Partner level or
+        Dealer level). Requires an appId and authToken issued by CarGurus. Served
+        from the v2.0 base URL. Response fields are modeled from CarGurus
+        documentation and published examples.
+      operationId: dealerStatsRequest
+      parameters:
+        - name: appId
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: authToken
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: body
+          in: query
+          required: true
+          description: JSON request body describing the dealer and date range.
+          schema:
+            type: object
+      responses:
+        '200':
+          description: Dealer stats response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DealerStatsResponse'
+components:
+  schemas:
+    Entity:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        isPopular:
+          type: boolean
+    Distance:
+      type: object
+      properties:
+        value:
+          type: integer
+        display:
+          type: string
+        isDefault:
+          type: boolean
+    ListMakesResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        errors:
+          type: array
+          items:
+            type: string
+        searchType:
+          type: string
+        makes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Entity'
+        distances:
+          type: array
+          items:
+            $ref: '#/components/schemas/Distance'
+    ListModelsResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        errors:
+          type: array
+          items:
+            type: string
+        searchType:
+          type: string
+        makeId:
+          type: string
+        models:
+          type: array
+          items:
+            $ref: '#/components/schemas/Entity'
+    ImvRequest:
+      type: object
+      properties:
+        listings:
+          type: array
+          items:
+            $ref: '#/components/schemas/ImvRequestListing'
+    ImvRequestListing:
+      type: object
+      properties:
+        vin:
+          type: string
+        make:
+          type: string
+        model:
+          type: string
+        trim:
+          type: string
+        year:
+          type: integer
+        transmission:
+          type: string
+        mileage:
+          type: integer
+        options:
+          type: string
+          description: Comma separated string of available car options.
+        is_certified:
+          type: boolean
+        price:
+          type: integer
+        postal_code:
+          type: string
+        last_updated_timestamp:
+          type: string
+          description: ISO-8601 formatted timestamp with UTC offset.
+    ImvResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        error:
+          $ref: '#/components/schemas/ApiError'
+        listings:
+          type: array
+          items:
+            $ref: '#/components/schemas/ImvResponseListing'
+    ImvResponseListing:
+      type: object
+      properties:
+        success:
+          type: boolean
+        error:
+          $ref: '#/components/schemas/ApiError'
+        vin:
+          type: string
+        instant_market_value:
+          type: integer
+        cg_make_name:
+          type: string
+        cg_model_name:
+          type: string
+        cg_year:
+          type: integer
+        cg_trim_name:
+          type: string
+        cg_entity_id:
+          type: string
+        rating:
+          type: string
+          enum:
+            - GREAT_PRICE
+            - GOOD_PRICE
+            - OK_PRICE
+            - FAIR_PRICE
+            - POOR_PRICE
+            - OVERPRICED
+            - OUTLIER
+            - NA
+    DealerReviewsRequest:
+      type: object
+      properties:
+        dealer_id:
+          type: string
+          description: The CarGurus dealer id, found in the dealer URL (for example sp61504).
+    DealerReviewsResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        error:
+          $ref: '#/components/schemas/ApiError'
+        dealer:
+          $ref: '#/components/schemas/Dealer'
+        manage_reviews_url:
+          type: string
+        reviews:
+          type: array
+          items:
+            $ref: '#/components/schemas/Review'
+    Dealer:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        url:
+          type: string
+    Review:
+      type: object
+      properties:
+        id:
+          type: string
+        url:
+          type: string
+        rating:
+          type: integer
+          description: User rating 1-5.
+        author:
+          type: string
+        body:
+          type: string
+        status:
+          type: string
+          enum: [UNDER_REVIEW, APPROVED]
+        creation_timestamp:
+          type: string
+        last_update_timestamp:
+          type: string
+        management_response:
+          $ref: '#/components/schemas/ManagementResponse'
+    ManagementResponse:
+      type: object
+      properties:
+        response:
+          type: string
+        creation_timestamp:
+          type: string
+        status:
+          type: string
+          enum: [UNDER_REVIEW, APPROVED]
+    DealerStatsResponse:
+      type: object
+      description: >-
+        Dealer inventory performance statistics. Fields modeled from CarGurus
+        documentation and published examples (endpointsModeled).
+      properties:
+        success:
+          type: boolean
+        error:
+          $ref: '#/components/schemas/ApiError'
+        srps:
+          type: integer
+          description: Search results page appearances.
+        vdps:
+          type: integer
+          description: Vehicle detail page views.
+        printouts:
+          type: integer
+        leads_email:
+          type: integer
+        phone_leads:
+          type: integer
+        sms_leads:
+          type: integer
+        chat_leads:
+          type: integer
+        map_clicks:
+          type: integer
+        website_clicks:
+          type: integer
+        facebook_clicks:
+          type: integer
+        twitter_clicks:
+          type: integer
+        daily_stats:
+          type: array
+          items:
+            $ref: '#/components/schemas/DailyStat'
+    DailyStat:
+      type: object
+      properties:
+        date:
+          type: string
+        leads:
+          type: integer
+        clicks:
+          type: integer
+        impressions:
+          type: integer
+    ApiError:
+      type: object
+      properties:
+        error_code:
+          type: integer
+        description:
+          type: string

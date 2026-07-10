@@ -1,0 +1,101 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: CarGurus
+providerId: cargurus-dealer
+created: '2026-07-10'
+modified: '2026-07-10'
+reconciled: false
+tags:
+- Automotive
+- Marketplace
+- Dealer
+- Plans
+description: >-
+  CarGurus does not sell metered API access. The developer APIs are unlocked as
+  part of a dealer or partner relationship, and access credentials (appId and
+  authToken) are issued by CarGurus. The Car Selector API is open and requires no
+  credentials. Commercial value flows through CarGurus dealer subscription
+  packages (listing visibility, analytics, lead tools) and partner integration
+  agreements, both of which are quote-based and not publicly listed - CarGurus
+  operates a published Dealer Pricing Policy but does not disclose per-tier
+  monthly rates. Figures below are structural, not reconciled dollar amounts.
+notes: >-
+  Dealer subscription tiers and partner terms are negotiated and vary by market,
+  inventory volume, and features. Confirm current packages and pricing with
+  CarGurus dealer sales (dealers.cargurus.com) during reconciliation.
+sources:
+- https://www.cargurus.com/Cars/developers/
+- https://www.cargurus.com/about/dealer-pricing-policy
+- https://dealers.cargurus.com/
+plans:
+- id: cargurus-car-selector-open
+  name: Car Selector API (Open)
+  type: free
+  description: >-
+    The Car Selector API (listMakes, listModels, listingSearch) is open and
+    requires no appId or authToken. Intended for building new/used listing search
+    widgets that redirect shoppers into CarGurus search results.
+  entries:
+  - label: Open API Access
+    name: car_selector_access
+    type: usage
+    metric: requests
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: free (no credentials required)
+    userMultiplied: false
+  elements:
+  - name: List Makes
+  - name: List Models
+  - name: Listing Search Redirect
+- id: cargurus-dealer-partner-apis
+  name: Dealer and Partner APIs (Credentialed)
+  type: subscription
+  description: >-
+    The Instant Market Value, Dealer Reviews, and Dealer Stats APIs require an
+    appId and authToken issued by CarGurus and are made available to dealers on a
+    CarGurus subscription and to approved analytics/marketing partners. Access is
+    part of the dealer or partner relationship rather than a standalone metered
+    API product.
+  entries:
+  - label: Credentialed API Access
+    name: dealer_partner_api_access
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: included with dealer subscription / partner agreement (quote-based)
+    userMultiplied: false
+  elements:
+  - name: Instant Market Value API
+  - name: Dealer Reviews API
+  - name: Dealer Stats API
+- id: cargurus-partner-integration
+  name: Partner Integration Agreement
+  type: enterprise
+  description: >-
+    Custom agreement for third-party analytics and marketing platforms (for
+    example vAuto, Clarivoy, Vistadash) that consume CarGurus APIs on behalf of
+    shared dealership customers. Terms and pricing are negotiated directly.
+  entries:
+  - label: Partner Agreement
+    name: partner_agreement
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact CarGurus (negotiated)
+    userMultiplied: false
+  elements:
+  - name: API Access on Behalf of Dealers
+  - name: Custom Integration Terms
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

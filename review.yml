@@ -1,0 +1,100 @@
+aid: cargurus-dealer
+name: CarGurus
+review:
+  question: Does CarGurus expose a documented public WebSocket API?
+  answer: false
+  date: '2026-07-10'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was authored. Every documented CarGurus developer API
+    is request/response HTTP over HTTPS - GET for the Car Selector API and POST
+    (with a JSON body plus appId/authToken query parameters) for the Instant
+    Market Value, Dealer Reviews, and Dealer Stats APIs. There is no server-push
+    transport (WebSocket or SSE) on any CarGurus public API to model. Real-time
+    or streaming behavior in the CarGurus ecosystem happens through dealer
+    inventory feeds and lead delivery into dealer CRMs, which are batch/feed and
+    email/HTTP mechanisms outside CarGurus' documented public API surface.
+findings:
+  summary: |
+    CarGurus does not publish a documented public WebSocket API. CarGurus is an
+    automotive marketplace and dealer marketing platform. Its documented
+    developer APIs live under https://www.cargurus.com/Cars/api/ and are all
+    plain HTTP: the open Car Selector API (v1.0, GET) for building listing search
+    widgets, and three partner/dealer-gated APIs authenticated with an appId and
+    authToken issued by CarGurus - Instant Market Value (v1.0, POST
+    imvRequest.action), Dealer Reviews (v1.0, POST dealerReviewsRequest.action),
+    and Dealer Stats (v2.0, POST dealerStatsRequest.action). No realtime,
+    bidirectional, or streaming WebSocket (ws:// or wss://) endpoint is
+    documented anywhere on CarGurus' developer site.
+  accessModel: |
+    Access is tiered by relationship, not sold as a metered API product. The Car
+    Selector API is fully open (no credentials). The IMV, Dealer Reviews, and
+    Dealer Stats APIs require credentials issued by CarGurus and are available to
+    dealers under a CarGurus subscription and to approved analytics/marketing
+    partners (for example vAuto, Clarivoy, Vistadash). Dealer inventory is
+    ingested via inventory feeds (feed providers / IMT), not a documented public
+    pull API, and leads are delivered to dealer CRMs rather than exposed as a
+    public REST endpoint. No public inventory or lead-retrieval endpoints were
+    fabricated for this entry.
+  endpointsModeled: |
+    The Car Selector, Instant Market Value, and Dealer Reviews endpoints and
+    schemas are taken directly from CarGurus developer documentation. The Dealer
+    Stats endpoint URL, method, and authentication are confirmed from CarGurus
+    documentation; its response fields (srps, vdps, printouts, phone/chat/sms/
+    email leads, map/website/social clicks, impressions, daily_stats) are modeled
+    from CarGurus documentation and published examples rather than a live capture.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://www.cargurus.com/Cars/api/1.0
+      documented: true
+      note: Car Selector (GET), Instant Market Value (POST), Dealer Reviews (POST).
+    - protocol: REST
+      scheme: https
+      baseURL: https://www.cargurus.com/Cars/api/2.0
+      documented: true
+      note: Dealer Stats (POST dealerStatsRequest.action).
+    - protocol: Feed
+      scheme: https
+      documented: false
+      note: Dealer inventory is ingested via inventory feeds (feed providers / IMT), not a documented public API.
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented anywhere on CarGurus' developer site as of the review date.
+  endpointsConfirmedRest:
+    - GET  https://www.cargurus.com/Cars/api/1.0/carselector/listMakes.action
+    - GET  https://www.cargurus.com/Cars/api/1.0/carselector/listModels.action
+    - GET  https://www.cargurus.com/Cars/api/1.0/carselector/listingSearch.action
+    - POST https://www.cargurus.com/Cars/api/1.0/imvRequest.action
+    - POST https://www.cargurus.com/Cars/api/1.0/dealerReviewsRequest.action
+    - POST https://www.cargurus.com/Cars/api/2.0/dealerStatsRequest.action
+sources:
+  - url: https://www.cargurus.com/Cars/developers/
+    type: DeveloperPortal
+    note: CarGurus developer landing page.
+  - url: https://www.cargurus.com/Cars/developers/docs/CarSelector.html
+    type: Documentation
+    note: Car Selector API - listMakes, listModels, listingSearch (GET, no auth).
+  - url: https://www.cargurus.com/Cars/developers/docs/InstantMarketValue.html
+    type: Documentation
+    note: Instant Market Value API - POST imvRequest.action with appId/authToken.
+  - url: https://www.cargurus.com/Cars/developers/docs/DealerReviews.html
+    type: Documentation
+    note: Dealer Reviews API - POST dealerReviewsRequest.action with appId/authToken.
+  - url: https://www.cargurus.com/Cars/developers/docs/DealerStatsV2Daily.html
+    type: Documentation
+    note: Dealer Stats API v2.0 - POST dealerStatsRequest.action; Partner and Dealer level.
+  - url: https://investors.cargurus.com/news-releases/news-release-details/cargurus-helps-dealerships-solve-attribution-more-insight
+    type: PressRelease
+    note: CarGurus opened its API to analytics partners (vAuto, Clarivoy, Vistadash).
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket protocol surface exists. Every documented CarGurus public API is
+    request/response HTTP (GET for Car Selector, POST for IMV/Reviews/Stats). No
+    AsyncAPI document was created because there is no server-push transport on any
+    CarGurus public API to model; inventory feeds and CRM lead delivery are
+    feed/email mechanisms outside the documented API surface.

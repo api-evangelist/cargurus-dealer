@@ -1,0 +1,130 @@
+aid: cargurus-dealer
+url: https://raw.githubusercontent.com/api-evangelist/cargurus-dealer/refs/heads/main/apis.yml
+name: CarGurus
+kind: company
+description: CarGurus is an automotive shopping and dealer marketing platform that
+  connects car shoppers with franchise and independent dealers through data-driven
+  listings, its Instant Market Value (IMV) deal ratings, and dealer reviews. For
+  developers and partners, CarGurus publishes a small set of documented HTTP APIs
+  under /Cars/api/ - an open Car Selector API for building new/used search widgets,
+  and partner/dealer-gated APIs for Instant Market Value, dealer reviews, and dealer
+  performance statistics (leads, VDPs, SRPs, impressions). Dealer inventory itself is
+  ingested through inventory feeds (feed providers / IMT), not a documented public
+  pull API, and leads are delivered to dealer CRMs rather than exposed as a public
+  REST endpoint.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Automotive
+- Marketplace
+- Car Listings
+- Dealer
+- Vehicle Pricing
+- Reviews
+- Inventory
+created: '2026-07-10'
+modified: '2026-07-10'
+specificationVersion: '0.19'
+apis:
+- aid: cargurus-dealer:cargurus-car-selector-api
+  name: CarGurus Car Selector API
+  tags:
+  - Car Listings
+  - Search
+  - Makes and Models
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.cargurus.com/Cars/developers/docs/CarSelector.html
+  baseURL: https://www.cargurus.com/Cars/api/1.0
+  properties:
+  - url: https://www.cargurus.com/Cars/developers/docs/CarSelector.html
+    type: Documentation
+  - url: https://www.cargurus.com/Cars/developers/docs/CarSelector.html
+    type: APIReference
+  - url: openapi/cargurus-dealer-openapi.yml
+    type: OpenAPI
+  description: Open (no-auth) API for building your own new/used listing search widget.
+    List available makes and models plus search distances, then construct a listing
+    search redirect URL. Endpoints - GET listMakes.action, GET listModels.action, and
+    GET listingSearch.action.
+- aid: cargurus-dealer:cargurus-instant-market-value-api
+  name: CarGurus Instant Market Value API
+  tags:
+  - Vehicle Pricing
+  - IMV
+  - Deal Rating
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.cargurus.com/Cars/developers/docs/InstantMarketValue.html
+  baseURL: https://www.cargurus.com/Cars/api/1.0
+  properties:
+  - url: https://www.cargurus.com/Cars/developers/docs/InstantMarketValue.html
+    type: Documentation
+  - url: https://www.cargurus.com/Cars/developers/docs/InstantMarketValue.html
+    type: APIReference
+  - url: openapi/cargurus-dealer-openapi.yml
+    type: OpenAPI
+  description: Partner/dealer-gated API to retrieve the CarGurus Instant Market Value
+    for one or more cars, plus the deal rating (GREAT_PRICE, GOOD_PRICE, FAIR_PRICE,
+    OVERPRICED, and more) and normalized make/model/trim/options in the CarGurus
+    ontology. POST imvRequest.action with an appId and authToken issued by CarGurus.
+- aid: cargurus-dealer:cargurus-dealer-reviews-api
+  name: CarGurus Dealer Reviews API
+  tags:
+  - Reviews
+  - Dealer
+  - Ratings
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.cargurus.com/Cars/developers/docs/DealerReviews.html
+  baseURL: https://www.cargurus.com/Cars/api/1.0
+  properties:
+  - url: https://www.cargurus.com/Cars/developers/docs/DealerReviews.html
+    type: Documentation
+  - url: https://www.cargurus.com/Cars/developers/docs/DealerReviews.html
+    type: APIReference
+  - url: openapi/cargurus-dealer-openapi.yml
+    type: OpenAPI
+  description: Partner/dealer-gated API to retrieve the sales reviews for a specific
+    CarGurus dealer, including 1-5 star ratings, author, body, moderation status, and
+    optional dealership management responses. POST dealerReviewsRequest.action with an
+    appId and authToken. External reuse is limited to 160 characters with attribution
+    and a link back to CarGurus.
+- aid: cargurus-dealer:cargurus-dealer-stats-api
+  name: CarGurus Dealer Stats API
+  tags:
+  - Analytics
+  - Leads
+  - Dealer Performance
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.cargurus.com/Cars/developers/docs/DealerStatsV2Daily.html
+  baseURL: https://www.cargurus.com/Cars/api/2.0
+  properties:
+  - url: https://www.cargurus.com/Cars/developers/docs/DealerStatsV2Daily.html
+    type: Documentation
+  - url: https://www.cargurus.com/Cars/developers/docs/DealerStatsV2Daily.html
+    type: APIReference
+  - url: openapi/cargurus-dealer-openapi.yml
+    type: OpenAPI
+  description: Partner/dealer-gated API (v2.0) to retrieve inventory performance
+    statistics for a dealer - phone/chat/SMS/email leads, VDPs, SRPs, printouts,
+    map/website/social clicks, impressions, and a daily_stats time series. Consumed by
+    dealer analytics partners (for example vAuto, Clarivoy, Vistadash). POST
+    dealerStatsRequest.action with an appId and authToken. Response fields are modeled
+    from CarGurus documentation.
+common:
+- type: GitHubOrganization
+  url: https://github.com/cargurus
+- type: LinkedIn
+  url: https://www.linkedin.com/company/cargurus
+- type: Website
+  url: https://www.cargurus.com
+- type: DeveloperPortal
+  url: https://www.cargurus.com/Cars/developers/
+- type: Documentation
+  url: https://www.cargurus.com/Cars/developers/docs/CarSelector.html
+- type: SignUp
+  url: https://dealers.cargurus.com/
+- type: Plans
+  url: plans/cargurus-dealer-plans-pricing.yml
+- type: Blog
+  url: https://dealers.cargurus.com/drc
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
