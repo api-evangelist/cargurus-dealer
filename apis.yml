@@ -109,6 +109,8 @@ apis:
     dealerStatsRequest.action with an appId and authToken. Response fields are modeled
     from CarGurus documentation.
 common:
+- type: AgenticAccess
+  url: agentic-access/cargurus-dealer-agentic-access.yml
 - type: DomainSecurity
   url: security/cargurus-dealer-domain-security.yml
 - type: GitHubOrganization
