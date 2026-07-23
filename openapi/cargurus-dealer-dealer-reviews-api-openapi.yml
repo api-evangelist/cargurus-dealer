@@ -1,0 +1,124 @@
+openapi: 3.0.3
+info:
+  title: CarGurus Developer APIs Car Selector Dealer Reviews API
+  description: 'Documented HTTP APIs published by CarGurus under the /Cars/api/ path. Four surfaces are described here: the open (no-auth) Car Selector API for building new/used listing search widgets, and three partner/dealer-gated APIs - Instant Market Value (IMV), Dealer Reviews, and Dealer Stats. The gated APIs authenticate with an appId and authToken issued by CarGurus and are passed as query parameters alongside a JSON body. Endpoint paths, methods, and the Car Selector, IMV, and Dealer Reviews schemas are taken directly from CarGurus developer documentation; the Dealer Stats response is modeled from CarGurus documentation and published examples (endpointsModeled). CarGurus does not publish a public inventory-listings pull API - dealer inventory is ingested via inventory feeds (feed providers / IMT) - and leads are delivered to dealer CRMs rather than exposed here.'
+  version: '1.0'
+  contact:
+    name: CarGurus Developers
+    url: https://www.cargurus.com/Cars/developers/
+servers:
+- url: https://www.cargurus.com/Cars/api/1.0
+  description: CarGurus API v1.0 (Car Selector, IMV, Dealer Reviews)
+- url: https://www.cargurus.com/Cars/api/2.0
+  description: CarGurus API v2.0 (Dealer Stats)
+tags:
+- name: Dealer Reviews
+  description: Retrieve sales reviews for a specific dealer.
+paths:
+  /dealerReviewsRequest.action:
+    post:
+      tags:
+      - Dealer Reviews
+      summary: Get dealer reviews
+      description: Retrieve sales reviews for a specific CarGurus dealer. Requires an appId and authToken issued by CarGurus.
+      operationId: dealerReviewsRequest
+      parameters:
+      - name: appId
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: authToken
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: body
+        in: query
+        required: true
+        description: JSON representation of the DealerReviewsRequest object.
+        schema:
+          $ref: '#/components/schemas/DealerReviewsRequest'
+      responses:
+        '200':
+          description: Dealer reviews response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DealerReviewsResponse'
+components:
+  schemas:
+    DealerReviewsRequest:
+      type: object
+      properties:
+        dealer_id:
+          type: string
+          description: The CarGurus dealer id, found in the dealer URL (for example sp61504).
+    DealerReviewsResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        error:
+          $ref: '#/components/schemas/ApiError'
+        dealer:
+          $ref: '#/components/schemas/Dealer'
+        manage_reviews_url:
+          type: string
+        reviews:
+          type: array
+          items:
+            $ref: '#/components/schemas/Review'
+    Dealer:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        url:
+          type: string
+    ManagementResponse:
+      type: object
+      properties:
+        response:
+          type: string
+        creation_timestamp:
+          type: string
+        status:
+          type: string
+          enum:
+          - UNDER_REVIEW
+          - APPROVED
+    ApiError:
+      type: object
+      properties:
+        error_code:
+          type: integer
+        description:
+          type: string
+    Review:
+      type: object
+      properties:
+        id:
+          type: string
+        url:
+          type: string
+        rating:
+          type: integer
+          description: User rating 1-5.
+        author:
+          type: string
+        body:
+          type: string
+        status:
+          type: string
+          enum:
+          - UNDER_REVIEW
+          - APPROVED
+        creation_timestamp:
+          type: string
+        last_update_timestamp:
+          type: string
+        management_response:
+          $ref: '#/components/schemas/ManagementResponse'

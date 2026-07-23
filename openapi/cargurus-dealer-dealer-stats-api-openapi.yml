@@ -1,0 +1,104 @@
+openapi: 3.0.3
+info:
+  title: CarGurus Developer APIs Car Selector Dealer Stats API
+  description: 'Documented HTTP APIs published by CarGurus under the /Cars/api/ path. Four surfaces are described here: the open (no-auth) Car Selector API for building new/used listing search widgets, and three partner/dealer-gated APIs - Instant Market Value (IMV), Dealer Reviews, and Dealer Stats. The gated APIs authenticate with an appId and authToken issued by CarGurus and are passed as query parameters alongside a JSON body. Endpoint paths, methods, and the Car Selector, IMV, and Dealer Reviews schemas are taken directly from CarGurus developer documentation; the Dealer Stats response is modeled from CarGurus documentation and published examples (endpointsModeled). CarGurus does not publish a public inventory-listings pull API - dealer inventory is ingested via inventory feeds (feed providers / IMT) - and leads are delivered to dealer CRMs rather than exposed here.'
+  version: '1.0'
+  contact:
+    name: CarGurus Developers
+    url: https://www.cargurus.com/Cars/developers/
+servers:
+- url: https://www.cargurus.com/Cars/api/1.0
+  description: CarGurus API v1.0 (Car Selector, IMV, Dealer Reviews)
+- url: https://www.cargurus.com/Cars/api/2.0
+  description: CarGurus API v2.0 (Dealer Stats)
+tags:
+- name: Dealer Stats
+  description: Retrieve dealer inventory performance statistics.
+paths:
+  /dealerStatsRequest.action:
+    post:
+      tags:
+      - Dealer Stats
+      summary: Get dealer stats
+      description: Retrieve inventory performance statistics for a dealer (Partner level or Dealer level). Requires an appId and authToken issued by CarGurus. Served from the v2.0 base URL. Response fields are modeled from CarGurus documentation and published examples.
+      operationId: dealerStatsRequest
+      parameters:
+      - name: appId
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: authToken
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: body
+        in: query
+        required: true
+        description: JSON request body describing the dealer and date range.
+        schema:
+          type: object
+      responses:
+        '200':
+          description: Dealer stats response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DealerStatsResponse'
+components:
+  schemas:
+    DailyStat:
+      type: object
+      properties:
+        date:
+          type: string
+        leads:
+          type: integer
+        clicks:
+          type: integer
+        impressions:
+          type: integer
+    DealerStatsResponse:
+      type: object
+      description: Dealer inventory performance statistics. Fields modeled from CarGurus documentation and published examples (endpointsModeled).
+      properties:
+        success:
+          type: boolean
+        error:
+          $ref: '#/components/schemas/ApiError'
+        srps:
+          type: integer
+          description: Search results page appearances.
+        vdps:
+          type: integer
+          description: Vehicle detail page views.
+        printouts:
+          type: integer
+        leads_email:
+          type: integer
+        phone_leads:
+          type: integer
+        sms_leads:
+          type: integer
+        chat_leads:
+          type: integer
+        map_clicks:
+          type: integer
+        website_clicks:
+          type: integer
+        facebook_clicks:
+          type: integer
+        twitter_clicks:
+          type: integer
+        daily_stats:
+          type: array
+          items:
+            $ref: '#/components/schemas/DailyStat'
+    ApiError:
+      type: object
+      properties:
+        error_code:
+          type: integer
+        description:
+          type: string

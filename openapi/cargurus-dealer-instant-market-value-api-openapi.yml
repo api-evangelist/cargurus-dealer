@@ -1,0 +1,138 @@
+openapi: 3.0.3
+info:
+  title: CarGurus Developer APIs Car Selector Instant Market Value API
+  description: 'Documented HTTP APIs published by CarGurus under the /Cars/api/ path. Four surfaces are described here: the open (no-auth) Car Selector API for building new/used listing search widgets, and three partner/dealer-gated APIs - Instant Market Value (IMV), Dealer Reviews, and Dealer Stats. The gated APIs authenticate with an appId and authToken issued by CarGurus and are passed as query parameters alongside a JSON body. Endpoint paths, methods, and the Car Selector, IMV, and Dealer Reviews schemas are taken directly from CarGurus developer documentation; the Dealer Stats response is modeled from CarGurus documentation and published examples (endpointsModeled). CarGurus does not publish a public inventory-listings pull API - dealer inventory is ingested via inventory feeds (feed providers / IMT) - and leads are delivered to dealer CRMs rather than exposed here.'
+  version: '1.0'
+  contact:
+    name: CarGurus Developers
+    url: https://www.cargurus.com/Cars/developers/
+servers:
+- url: https://www.cargurus.com/Cars/api/1.0
+  description: CarGurus API v1.0 (Car Selector, IMV, Dealer Reviews)
+- url: https://www.cargurus.com/Cars/api/2.0
+  description: CarGurus API v2.0 (Dealer Stats)
+tags:
+- name: Instant Market Value
+  description: Retrieve CarGurus Instant Market Value and deal rating for cars.
+paths:
+  /imvRequest.action:
+    post:
+      tags:
+      - Instant Market Value
+      summary: Get Instant Market Value
+      description: Retrieve the CarGurus Instant Market Value and deal rating for one or more cars. Requires an appId and authToken issued by CarGurus, plus a JSON body describing the listings.
+      operationId: imvRequest
+      parameters:
+      - name: appId
+        in: query
+        required: true
+        description: Application id provided by CarGurus.
+        schema:
+          type: string
+      - name: authToken
+        in: query
+        required: true
+        description: Authentication token provided by CarGurus.
+        schema:
+          type: string
+      - name: body
+        in: query
+        required: true
+        description: JSON representation of the ImvRequest object.
+        schema:
+          $ref: '#/components/schemas/ImvRequest'
+      responses:
+        '200':
+          description: Instant Market Value response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImvResponse'
+components:
+  schemas:
+    ImvRequestListing:
+      type: object
+      properties:
+        vin:
+          type: string
+        make:
+          type: string
+        model:
+          type: string
+        trim:
+          type: string
+        year:
+          type: integer
+        transmission:
+          type: string
+        mileage:
+          type: integer
+        options:
+          type: string
+          description: Comma separated string of available car options.
+        is_certified:
+          type: boolean
+        price:
+          type: integer
+        postal_code:
+          type: string
+        last_updated_timestamp:
+          type: string
+          description: ISO-8601 formatted timestamp with UTC offset.
+    ImvResponseListing:
+      type: object
+      properties:
+        success:
+          type: boolean
+        error:
+          $ref: '#/components/schemas/ApiError'
+        vin:
+          type: string
+        instant_market_value:
+          type: integer
+        cg_make_name:
+          type: string
+        cg_model_name:
+          type: string
+        cg_year:
+          type: integer
+        cg_trim_name:
+          type: string
+        cg_entity_id:
+          type: string
+        rating:
+          type: string
+          enum:
+          - GREAT_PRICE
+          - GOOD_PRICE
+          - OK_PRICE
+          - FAIR_PRICE
+          - POOR_PRICE
+          - OVERPRICED
+          - OUTLIER
+          - NA
+    ImvRequest:
+      type: object
+      properties:
+        listings:
+          type: array
+          items:
+            $ref: '#/components/schemas/ImvRequestListing'
+    ApiError:
+      type: object
+      properties:
+        error_code:
+          type: integer
+        description:
+          type: string
+    ImvResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        error:
+          $ref: '#/components/schemas/ApiError'
+        listings:
+          type: array
+          items:
+            $ref: '#/components/schemas/ImvResponseListing'
