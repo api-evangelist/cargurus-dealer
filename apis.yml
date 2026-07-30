@@ -12,7 +12,19 @@ description: CarGurus is an automotive shopping and dealer marketing platform th
   ingested through inventory feeds (feed providers / IMT), not a documented public
   pull API, and leads are delivered to dealer CRMs rather than exposed as a public
   REST endpoint.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: free
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Free
+  confidence: medium
+  source:
+  - plans
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/cargurus-dealer.png
 tags:
 - Automotive
 - Marketplace
@@ -25,89 +37,110 @@ created: '2026-07-10'
 modified: '2026-07-10'
 specificationVersion: '0.19'
 apis:
-- aid: cargurus-dealer:cargurus-car-selector-api
+- aid: cargurus-dealer:cargurus-dealer-car-selector-api
   name: CarGurus Car Selector API
-  tags:
-  - Car Listings
-  - Search
-  - Makes and Models
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  description: Open API for building new/used listing search widgets.
   humanURL: https://www.cargurus.com/Cars/developers/docs/CarSelector.html
   baseURL: https://www.cargurus.com/Cars/api/1.0
-  properties:
-  - url: https://www.cargurus.com/Cars/developers/docs/CarSelector.html
-    type: Documentation
-  - url: https://www.cargurus.com/Cars/developers/docs/CarSelector.html
-    type: APIReference
-  - url: openapi/cargurus-dealer-openapi.yml
-    type: OpenAPI
-  description: Open (no-auth) API for building your own new/used listing search widget.
-    List available makes and models plus search distances, then construct a listing
-    search redirect URL. Endpoints - GET listMakes.action, GET listModels.action, and
-    GET listingSearch.action.
-- aid: cargurus-dealer:cargurus-instant-market-value-api
-  name: CarGurus Instant Market Value API
   tags:
-  - Vehicle Pricing
-  - IMV
-  - Deal Rating
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://www.cargurus.com/Cars/developers/docs/InstantMarketValue.html
-  baseURL: https://www.cargurus.com/Cars/api/1.0
+  - Car Selector
   properties:
-  - url: https://www.cargurus.com/Cars/developers/docs/InstantMarketValue.html
-    type: Documentation
-  - url: https://www.cargurus.com/Cars/developers/docs/InstantMarketValue.html
-    type: APIReference
-  - url: openapi/cargurus-dealer-openapi.yml
-    type: OpenAPI
-  description: Partner/dealer-gated API to retrieve the CarGurus Instant Market Value
-    for one or more cars, plus the deal rating (GREAT_PRICE, GOOD_PRICE, FAIR_PRICE,
-    OVERPRICED, and more) and normalized make/model/trim/options in the CarGurus
-    ontology. POST imvRequest.action with an appId and authToken issued by CarGurus.
-- aid: cargurus-dealer:cargurus-dealer-reviews-api
+  - type: OpenAPI
+    url: openapi/cargurus-dealer-car-selector-api-openapi.yml
+  - type: Documentation
+    url: https://www.cargurus.com/Cars/developers/docs/CarSelector.html
+  - type: APIReference
+    url: https://www.cargurus.com/Cars/developers/docs/CarSelector.html
+  - type: Documentation
+    url: https://www.cargurus.com/Cars/developers/docs/InstantMarketValue.html
+  - type: APIReference
+    url: https://www.cargurus.com/Cars/developers/docs/InstantMarketValue.html
+  - type: Documentation
+    url: https://www.cargurus.com/Cars/developers/docs/DealerReviews.html
+  - type: APIReference
+    url: https://www.cargurus.com/Cars/developers/docs/DealerReviews.html
+  - type: Documentation
+    url: https://www.cargurus.com/Cars/developers/docs/DealerStatsV2Daily.html
+  - type: APIReference
+    url: https://www.cargurus.com/Cars/developers/docs/DealerStatsV2Daily.html
+- aid: cargurus-dealer:cargurus-dealer-dealer-reviews-api
   name: CarGurus Dealer Reviews API
-  tags:
-  - Reviews
-  - Dealer
-  - Ratings
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://www.cargurus.com/Cars/developers/docs/DealerReviews.html
+  description: Retrieve sales reviews for a specific dealer.
+  humanURL: https://www.cargurus.com/Cars/developers/docs/CarSelector.html
   baseURL: https://www.cargurus.com/Cars/api/1.0
-  properties:
-  - url: https://www.cargurus.com/Cars/developers/docs/DealerReviews.html
-    type: Documentation
-  - url: https://www.cargurus.com/Cars/developers/docs/DealerReviews.html
-    type: APIReference
-  - url: openapi/cargurus-dealer-openapi.yml
-    type: OpenAPI
-  description: Partner/dealer-gated API to retrieve the sales reviews for a specific
-    CarGurus dealer, including 1-5 star ratings, author, body, moderation status, and
-    optional dealership management responses. POST dealerReviewsRequest.action with an
-    appId and authToken. External reuse is limited to 160 characters with attribution
-    and a link back to CarGurus.
-- aid: cargurus-dealer:cargurus-dealer-stats-api
-  name: CarGurus Dealer Stats API
   tags:
-  - Analytics
-  - Leads
-  - Dealer Performance
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://www.cargurus.com/Cars/developers/docs/DealerStatsV2Daily.html
-  baseURL: https://www.cargurus.com/Cars/api/2.0
+  - Dealer Reviews
   properties:
-  - url: https://www.cargurus.com/Cars/developers/docs/DealerStatsV2Daily.html
-    type: Documentation
-  - url: https://www.cargurus.com/Cars/developers/docs/DealerStatsV2Daily.html
-    type: APIReference
-  - url: openapi/cargurus-dealer-openapi.yml
-    type: OpenAPI
-  description: Partner/dealer-gated API (v2.0) to retrieve inventory performance
-    statistics for a dealer - phone/chat/SMS/email leads, VDPs, SRPs, printouts,
-    map/website/social clicks, impressions, and a daily_stats time series. Consumed by
-    dealer analytics partners (for example vAuto, Clarivoy, Vistadash). POST
-    dealerStatsRequest.action with an appId and authToken. Response fields are modeled
-    from CarGurus documentation.
+  - type: OpenAPI
+    url: openapi/cargurus-dealer-dealer-reviews-api-openapi.yml
+  - type: Documentation
+    url: https://www.cargurus.com/Cars/developers/docs/CarSelector.html
+  - type: APIReference
+    url: https://www.cargurus.com/Cars/developers/docs/CarSelector.html
+  - type: Documentation
+    url: https://www.cargurus.com/Cars/developers/docs/InstantMarketValue.html
+  - type: APIReference
+    url: https://www.cargurus.com/Cars/developers/docs/InstantMarketValue.html
+  - type: Documentation
+    url: https://www.cargurus.com/Cars/developers/docs/DealerReviews.html
+  - type: APIReference
+    url: https://www.cargurus.com/Cars/developers/docs/DealerReviews.html
+  - type: Documentation
+    url: https://www.cargurus.com/Cars/developers/docs/DealerStatsV2Daily.html
+  - type: APIReference
+    url: https://www.cargurus.com/Cars/developers/docs/DealerStatsV2Daily.html
+- aid: cargurus-dealer:cargurus-dealer-dealer-stats-api
+  name: CarGurus Dealer Stats API
+  description: Retrieve dealer inventory performance statistics.
+  humanURL: https://www.cargurus.com/Cars/developers/docs/CarSelector.html
+  baseURL: https://www.cargurus.com/Cars/api/1.0
+  tags:
+  - Dealer Stats
+  properties:
+  - type: OpenAPI
+    url: openapi/cargurus-dealer-dealer-stats-api-openapi.yml
+  - type: Documentation
+    url: https://www.cargurus.com/Cars/developers/docs/CarSelector.html
+  - type: APIReference
+    url: https://www.cargurus.com/Cars/developers/docs/CarSelector.html
+  - type: Documentation
+    url: https://www.cargurus.com/Cars/developers/docs/InstantMarketValue.html
+  - type: APIReference
+    url: https://www.cargurus.com/Cars/developers/docs/InstantMarketValue.html
+  - type: Documentation
+    url: https://www.cargurus.com/Cars/developers/docs/DealerReviews.html
+  - type: APIReference
+    url: https://www.cargurus.com/Cars/developers/docs/DealerReviews.html
+  - type: Documentation
+    url: https://www.cargurus.com/Cars/developers/docs/DealerStatsV2Daily.html
+  - type: APIReference
+    url: https://www.cargurus.com/Cars/developers/docs/DealerStatsV2Daily.html
+- aid: cargurus-dealer:cargurus-dealer-instant-market-value-api
+  name: CarGurus Instant Market Value API
+  description: Retrieve CarGurus Instant Market Value and deal rating for cars.
+  humanURL: https://www.cargurus.com/Cars/developers/docs/CarSelector.html
+  baseURL: https://www.cargurus.com/Cars/api/1.0
+  tags:
+  - Instant Market Value
+  properties:
+  - type: OpenAPI
+    url: openapi/cargurus-dealer-instant-market-value-api-openapi.yml
+  - type: Documentation
+    url: https://www.cargurus.com/Cars/developers/docs/CarSelector.html
+  - type: APIReference
+    url: https://www.cargurus.com/Cars/developers/docs/CarSelector.html
+  - type: Documentation
+    url: https://www.cargurus.com/Cars/developers/docs/InstantMarketValue.html
+  - type: APIReference
+    url: https://www.cargurus.com/Cars/developers/docs/InstantMarketValue.html
+  - type: Documentation
+    url: https://www.cargurus.com/Cars/developers/docs/DealerReviews.html
+  - type: APIReference
+    url: https://www.cargurus.com/Cars/developers/docs/DealerReviews.html
+  - type: Documentation
+    url: https://www.cargurus.com/Cars/developers/docs/DealerStatsV2Daily.html
+  - type: APIReference
+    url: https://www.cargurus.com/Cars/developers/docs/DealerStatsV2Daily.html
 common:
 - type: AgenticAccess
   url: agentic-access/cargurus-dealer-agentic-access.yml
