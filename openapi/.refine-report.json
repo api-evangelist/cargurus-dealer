@@ -1,0 +1,20 @@
+{
+  "provider": "cargurus-dealer",
+  "sources": [
+    "cargurus-dealer-car-selector-api-openapi.yml",
+    "cargurus-dealer-dealer-reviews-api-openapi.yml",
+    "cargurus-dealer-dealer-stats-api-openapi.yml",
+    "cargurus-dealer-instant-market-value-api-openapi.yml"
+  ],
+  "outputs": [
+    "cargurus-dealer-car-selector-api-openapi.yml",
+    "cargurus-dealer-dealer-reviews-api-openapi.yml",
+    "cargurus-dealer-dealer-stats-api-openapi.yml",
+    "cargurus-dealer-instant-market-value-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
