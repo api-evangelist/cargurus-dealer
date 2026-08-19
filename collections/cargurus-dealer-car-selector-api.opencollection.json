@@ -1,0 +1,101 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CarGurus Developer APIs Car Selector API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Car Selector",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List makes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.cargurus.com/Cars/api/1.0/carselector/listMakes.action",
+            "params": [
+              {
+                "name": "searchType",
+                "value": "",
+                "type": "query",
+                "description": "Type of search - NEW or USED."
+              }
+            ]
+          },
+          "docs": "List the vehicle makes available for a NEW or USED search, in alphabetical order, along with the available search distances. No authentication required."
+        },
+        {
+          "info": {
+            "name": "List models",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.cargurus.com/Cars/api/1.0/carselector/listModels.action",
+            "params": [
+              {
+                "name": "searchType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "makeId",
+                "value": "",
+                "type": "query",
+                "description": "Make id as returned by listMakes."
+              }
+            ]
+          },
+          "docs": "List the models for a given make, in alphabetical order."
+        },
+        {
+          "info": {
+            "name": "Listing search redirect",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.cargurus.com/Cars/api/1.0/carselector/listingSearch.action",
+            "params": [
+              {
+                "name": "searchType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "entityId",
+                "value": "",
+                "type": "query",
+                "description": "Make or Model entity id selected by the user."
+              },
+              {
+                "name": "postalCode",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "distance",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "affiliatePartner",
+                "value": "",
+                "type": "query",
+                "description": "Optional affiliate partner identifier."
+              }
+            ]
+          },
+          "docs": "Construct the URL a user is redirected to when they submit the search form. Returns a CarGurus listing search results page."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

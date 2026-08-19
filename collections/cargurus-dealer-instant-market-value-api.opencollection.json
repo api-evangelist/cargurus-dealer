@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CarGurus Developer APIs Car Selector Instant Market Value API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Instant Market Value",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Instant Market Value",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://www.cargurus.com/Cars/api/1.0/imvRequest.action",
+            "params": [
+              {
+                "name": "appId",
+                "value": "",
+                "type": "query",
+                "description": "Application id provided by CarGurus."
+              },
+              {
+                "name": "authToken",
+                "value": "",
+                "type": "query",
+                "description": "Authentication token provided by CarGurus."
+              },
+              {
+                "name": "body",
+                "value": "",
+                "type": "query",
+                "description": "JSON representation of the ImvRequest object."
+              }
+            ]
+          },
+          "docs": "Retrieve the CarGurus Instant Market Value and deal rating for one or more cars. Requires an appId and authToken issued by CarGurus, plus a JSON body describing the listings."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

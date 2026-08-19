@@ -1,0 +1,47 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CarGurus Developer APIs Car Selector Dealer Stats API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Dealer Stats",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get dealer stats",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://www.cargurus.com/Cars/api/1.0/dealerStatsRequest.action",
+            "params": [
+              {
+                "name": "appId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "authToken",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "body",
+                "value": "",
+                "type": "query",
+                "description": "JSON request body describing the dealer and date range."
+              }
+            ]
+          },
+          "docs": "Retrieve inventory performance statistics for a dealer (Partner level or Dealer level). Requires an appId and authToken issued by CarGurus. Served from the v2.0 base URL. Response fields are modeled from CarGurus documentation and published examples."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

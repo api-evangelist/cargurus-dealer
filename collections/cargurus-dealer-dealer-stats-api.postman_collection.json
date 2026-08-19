@@ -1,0 +1,124 @@
+{
+  "item": [
+    {
+      "id": "2eb87232-281b-4f98-ae68-e59d79b95514",
+      "name": "Dealer Stats",
+      "description": {
+        "content": "Retrieve dealer inventory performance statistics.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "98767863-1ef0-4755-91ba-59731d218791",
+          "name": "Get dealer stats",
+          "request": {
+            "name": "Get dealer stats",
+            "description": {
+              "content": "Retrieve inventory performance statistics for a dealer (Partner level or Dealer level). Requires an appId and authToken issued by CarGurus. Served from the v2.0 base URL. Response fields are modeled from CarGurus documentation and published examples.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dealerStatsRequest.action"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "appId",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "authToken",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4d79e4c6-f603-43c5-8102-fe39ec9a7d26",
+              "name": "Dealer stats response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dealerStatsRequest.action"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "appId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "authToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": {\n    \"error_code\": 7850,\n    \"description\": \"string\"\n  },\n  \"srps\": 5016,\n  \"vdps\": 3820,\n  \"printouts\": 7305,\n  \"leads_email\": 2415,\n  \"phone_leads\": 4068,\n  \"sms_leads\": 1046,\n  \"chat_leads\": 719,\n  \"map_clicks\": 5692,\n  \"website_clicks\": 3719,\n  \"facebook_clicks\": 4551,\n  \"twitter_clicks\": 4386,\n  \"daily_stats\": [\n    {\n      \"date\": \"string\",\n      \"leads\": 9131,\n      \"clicks\": 9787,\n      \"impressions\": 1597\n    },\n    {\n      \"date\": \"string\",\n      \"leads\": 5208,\n      \"clicks\": 877,\n      \"impressions\": 4923\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://www.cargurus.com/Cars/api/1.0",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "034c4581-505d-43ec-80f7-9c74a7f51d59",
+    "name": "CarGurus Developer APIs Car Selector Dealer Stats API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Documented HTTP APIs published by CarGurus under the /Cars/api/ path. Four surfaces are described here: the open (no-auth) Car Selector API for building new/used listing search widgets, and three partner/dealer-gated APIs - Instant Market Value (IMV), Dealer Reviews, and Dealer Stats. The gated APIs authenticate with an appId and authToken issued by CarGurus and are passed as query parameters alongside a JSON body. Endpoint paths, methods, and the Car Selector, IMV, and Dealer Reviews schemas are taken directly from CarGurus developer documentation; the Dealer Stats response is modeled from CarGurus documentation and published examples (endpointsModeled). CarGurus does not publish a public inventory-listings pull API - dealer inventory is ingested via inventory feeds (feed providers / IMT) - and leads are delivered to dealer CRMs rather than exposed here.\n\nContact Support:\n Name: CarGurus Developers",
+      "type": "text/plain"
+    }
+  }
+}

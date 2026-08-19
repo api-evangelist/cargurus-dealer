@@ -1,0 +1,322 @@
+{
+  "item": [
+    {
+      "id": "0e70ba7f-f80a-49fd-af3d-679dbc437142",
+      "name": "Car Selector",
+      "description": {
+        "content": "Open API for building new/used listing search widgets.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f462907c-eabd-4ea1-bffb-9eb9d2ba293e",
+          "name": "List makes",
+          "request": {
+            "name": "List makes",
+            "description": {
+              "content": "List the vehicle makes available for a NEW or USED search, in alphabetical order, along with the available search distances. No authentication required.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "carselector",
+                "listMakes.action"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "searchType",
+                  "value": "<string>",
+                  "description": "(Required) Type of search - NEW or USED."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bd909128-8035-40fb-b1b3-9406a66ad5f2",
+              "name": "Makes and distances.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "carselector",
+                    "listMakes.action"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "searchType",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ],\n  \"searchType\": \"string\",\n  \"makes\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"isPopular\": false\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"isPopular\": true\n    }\n  ],\n  \"distances\": [\n    {\n      \"value\": 8842,\n      \"display\": \"string\",\n      \"isDefault\": true\n    },\n    {\n      \"value\": 1874,\n      \"display\": \"string\",\n      \"isDefault\": false\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0154fc52-7cd4-4cc5-9c17-f332f42dcb07",
+          "name": "List models",
+          "request": {
+            "name": "List models",
+            "description": {
+              "content": "List the models for a given make, in alphabetical order.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "carselector",
+                "listModels.action"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "searchType",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "makeId",
+                  "value": "<string>",
+                  "description": "(Required) Make id as returned by listMakes."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2ae3da44-f6a5-470e-b2cb-4c1aba196b9d",
+              "name": "Models for the make.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "carselector",
+                    "listModels.action"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "searchType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "makeId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ],\n  \"searchType\": \"string\",\n  \"makeId\": \"string\",\n  \"models\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"isPopular\": true\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"isPopular\": false\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "eb9159a3-2724-40dc-9ac3-7686338c1fea",
+          "name": "Listing search redirect",
+          "request": {
+            "name": "Listing search redirect",
+            "description": {
+              "content": "Construct the URL a user is redirected to when they submit the search form. Returns a CarGurus listing search results page.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "carselector",
+                "listingSearch.action"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "searchType",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "entityId",
+                  "value": "<string>",
+                  "description": "(Required) Make or Model entity id selected by the user."
+                },
+                {
+                  "disabled": false,
+                  "key": "postalCode",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "distance",
+                  "value": "<integer>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "affiliatePartner",
+                  "value": "<string>",
+                  "description": "Optional affiliate partner identifier."
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "69081a5d-c98b-4e57-aba8-d3a907c126a3",
+              "name": "CarGurus listing search results page.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "carselector",
+                    "listingSearch.action"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "searchType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "entityId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "postalCode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "distance",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "affiliatePartner",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://www.cargurus.com/Cars/api/1.0",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "dc6bf779-5913-4e5c-a158-20336a36fbbc",
+    "name": "CarGurus Developer APIs Car Selector API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Documented HTTP APIs published by CarGurus under the /Cars/api/ path. Four surfaces are described here: the open (no-auth) Car Selector API for building new/used listing search widgets, and three partner/dealer-gated APIs - Instant Market Value (IMV), Dealer Reviews, and Dealer Stats. The gated APIs authenticate with an appId and authToken issued by CarGurus and are passed as query parameters alongside a JSON body. Endpoint paths, methods, and the Car Selector, IMV, and Dealer Reviews schemas are taken directly from CarGurus developer documentation; the Dealer Stats response is modeled from CarGurus documentation and published examples (endpointsModeled). CarGurus does not publish a public inventory-listings pull API - dealer inventory is ingested via inventory feeds (feed providers / IMT) - and leads are delivered to dealer CRMs rather than exposed here.\n\nContact Support:\n Name: CarGurus Developers",
+      "type": "text/plain"
+    }
+  }
+}

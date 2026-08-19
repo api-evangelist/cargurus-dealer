@@ -1,0 +1,134 @@
+{
+  "item": [
+    {
+      "id": "3a9fcf38-28af-4fdd-a0f2-e29c319b1805",
+      "name": "Instant Market Value",
+      "description": {
+        "content": "Retrieve CarGurus Instant Market Value and deal rating for cars.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3e01411b-9f37-458d-b070-75dab7a116fc",
+          "name": "Get Instant Market Value",
+          "request": {
+            "name": "Get Instant Market Value",
+            "description": {
+              "content": "Retrieve the CarGurus Instant Market Value and deal rating for one or more cars. Requires an appId and authToken issued by CarGurus, plus a JSON body describing the listings.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "imvRequest.action"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "appId",
+                  "value": "<string>",
+                  "description": "(Required) Application id provided by CarGurus."
+                },
+                {
+                  "disabled": false,
+                  "key": "authToken",
+                  "value": "<string>",
+                  "description": "(Required) Authentication token provided by CarGurus."
+                },
+                {
+                  "disabled": false,
+                  "key": "listings",
+                  "value": "[{\"vin\":\"<string>\",\"make\":\"<string>\",\"model\":\"<string>\",\"trim\":\"<string>\",\"year\":\"<integer>\",\"transmission\":\"<string>\",\"mileage\":\"<integer>\",\"options\":\"<string>\",\"is_certified\":\"<boolean>\",\"price\":\"<integer>\",\"postal_code\":\"<string>\",\"last_updated_timestamp\":\"<string>\"},{\"vin\":\"<string>\",\"make\":\"<string>\",\"model\":\"<string>\",\"trim\":\"<string>\",\"year\":\"<integer>\",\"transmission\":\"<string>\",\"mileage\":\"<integer>\",\"options\":\"<string>\",\"is_certified\":\"<boolean>\",\"price\":\"<integer>\",\"postal_code\":\"<string>\",\"last_updated_timestamp\":\"<string>\"}]",
+                  "description": "(Required) JSON representation of the ImvRequest object."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4ceb501d-12bc-4741-9c02-ad27e1809928",
+              "name": "Instant Market Value response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "imvRequest.action"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "appId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "authToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "listings",
+                      "value": "[object Object],[object Object]"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": {\n    \"error_code\": 813,\n    \"description\": \"string\"\n  },\n  \"listings\": [\n    {\n      \"success\": true,\n      \"error\": {\n        \"error_code\": 8827,\n        \"description\": \"string\"\n      },\n      \"vin\": \"string\",\n      \"instant_market_value\": 9627,\n      \"cg_make_name\": \"string\",\n      \"cg_model_name\": \"string\",\n      \"cg_year\": 3580,\n      \"cg_trim_name\": \"string\",\n      \"cg_entity_id\": \"string\",\n      \"rating\": \"OK_PRICE\"\n    },\n    {\n      \"success\": true,\n      \"error\": {\n        \"error_code\": 5472,\n        \"description\": \"string\"\n      },\n      \"vin\": \"string\",\n      \"instant_market_value\": 3508,\n      \"cg_make_name\": \"string\",\n      \"cg_model_name\": \"string\",\n      \"cg_year\": 750,\n      \"cg_trim_name\": \"string\",\n      \"cg_entity_id\": \"string\",\n      \"rating\": \"GOOD_PRICE\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://www.cargurus.com/Cars/api/1.0",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "29cd42c9-5415-4e8d-a325-734faab2cd56",
+    "name": "CarGurus Developer APIs Car Selector Instant Market Value API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Documented HTTP APIs published by CarGurus under the /Cars/api/ path. Four surfaces are described here: the open (no-auth) Car Selector API for building new/used listing search widgets, and three partner/dealer-gated APIs - Instant Market Value (IMV), Dealer Reviews, and Dealer Stats. The gated APIs authenticate with an appId and authToken issued by CarGurus and are passed as query parameters alongside a JSON body. Endpoint paths, methods, and the Car Selector, IMV, and Dealer Reviews schemas are taken directly from CarGurus developer documentation; the Dealer Stats response is modeled from CarGurus documentation and published examples (endpointsModeled). CarGurus does not publish a public inventory-listings pull API - dealer inventory is ingested via inventory feeds (feed providers / IMT) - and leads are delivered to dealer CRMs rather than exposed here.\n\nContact Support:\n Name: CarGurus Developers",
+      "type": "text/plain"
+    }
+  }
+}
