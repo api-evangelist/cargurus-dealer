@@ -35,7 +35,7 @@ tags:
 - Inventory
 created: '2026-07-10'
 modified: '2026-07-10'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
 - aid: cargurus-dealer:cargurus-dealer-car-selector-api
   name: CarGurus Car Selector API
