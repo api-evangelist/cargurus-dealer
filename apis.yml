@@ -12,6 +12,18 @@ description: CarGurus is an automotive shopping and dealer marketing platform th
   ingested through inventory feeds (feed providers / IMT), not a documented public
   pull API, and leads are delivered to dealer CRMs rather than exposed as a public
   REST endpoint.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: free
   onboarding: unknown
