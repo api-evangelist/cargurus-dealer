@@ -2,16 +2,13 @@ aid: cargurus-dealer
 url: https://raw.githubusercontent.com/api-evangelist/cargurus-dealer/refs/heads/main/apis.yml
 name: CarGurus
 kind: company
-description: CarGurus is an automotive shopping and dealer marketing platform that
-  connects car shoppers with franchise and independent dealers through data-driven
-  listings, its Instant Market Value (IMV) deal ratings, and dealer reviews. For
-  developers and partners, CarGurus publishes a small set of documented HTTP APIs
-  under /Cars/api/ - an open Car Selector API for building new/used search widgets,
-  and partner/dealer-gated APIs for Instant Market Value, dealer reviews, and dealer
-  performance statistics (leads, VDPs, SRPs, impressions). Dealer inventory itself is
-  ingested through inventory feeds (feed providers / IMT), not a documented public
-  pull API, and leads are delivered to dealer CRMs rather than exposed as a public
-  REST endpoint.
+description: CarGurus is an automotive shopping and dealer marketing platform that connects car shoppers with franchise
+  and independent dealers through data-driven listings, its Instant Market Value (IMV) deal ratings, and dealer
+  reviews. For developers and partners, CarGurus publishes a small set of documented HTTP APIs under /Cars/api/
+  - an open Car Selector API for building new/used search widgets, and partner/dealer-gated APIs for Instant Market
+  Value, dealer reviews, and dealer performance statistics (leads, VDPs, SRPs, impressions). Dealer inventory itself
+  is ingested through inventory feeds (feed providers / IMT), not a documented public pull API, and leads are delivered
+  to dealer CRMs rather than exposed as a public REST endpoint.
 deliveryModel:
   model: saas
   open_source: false
@@ -153,6 +150,130 @@ apis:
     url: https://www.cargurus.com/Cars/developers/docs/DealerStatsV2Daily.html
   - type: APIReference
     url: https://www.cargurus.com/Cars/developers/docs/DealerStatsV2Daily.html
+- aid: cargurus-dealer:dealer-stats-api
+  name: CarGurus Dealer Stats API
+  description: Retrieves daily performance statistics for dealer inventory including search result page views, vehicle
+    detail page clicks, and lead generation metrics across email, phone, chat, and SMS channels.
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.cargurus.com/Cars/developers/docs/DealerStatsV3Daily.html
+  baseURL: https://www.cargurus.com
+  tags:
+  - Dealer Analytics
+  - Inventory Statistics
+  - Lead Metrics
+  properties:
+  - type: Documentation
+    url: https://www.cargurus.com/Cars/developers/docs/DealerStatsV3Daily.html
+  - type: Authentication
+    url: https://www.cargurus.com/Cars/developers/
+- aid: cargurus-dealer:instant-market-value-api
+  name: CarGurus Instant Market Value API
+  description: Returns vehicle market valuations and deal ratings (Great Price, Good Price, Fair Price, etc.) based
+    on VIN, make, model, trim, mileage, and location data, enabling real-time price comparison and market positioning.
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.cargurus.com/Cars/developers/docs/InstantMarketValue.html
+  baseURL: https://www.cargurus.com
+  tags:
+  - Vehicle Pricing
+  - Market Valuation
+  - Deal Rating
+  properties:
+  - type: Documentation
+    url: https://www.cargurus.com/Cars/developers/docs/InstantMarketValue.html
+  - type: Authentication
+    url: https://www.cargurus.com/Cars/developers/
+- aid: cargurus-dealer:dealer-reviews-api
+  name: CarGurus Dealer Reviews API
+  description: Provides access to consumer dealer reviews including ratings, review text, author information, timestamps,
+    and dealer management responses, supporting reputation management and review display integrations.
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.cargurus.com/Cars/developers/docs/DealerReviews.html
+  baseURL: https://www.cargurus.com
+  tags:
+  - Dealer Reviews
+  - Reputation Management
+  - Consumer Feedback
+  properties:
+  - type: Documentation
+    url: https://www.cargurus.com/Cars/developers/docs/DealerReviews.html
+  - type: Authentication
+    url: https://www.cargurus.com/Cars/developers/
+- aid: cargurus-dealer:dealer-sms-api
+  name: CarGurus Dealer SMS API
+  description: Enables dealers to send SMS and MMS messages to consumers, supporting text and media content up to
+    1600 characters and 10 media attachments for direct dealer-to-consumer communication through the CarGurus platform.
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.cargurus.com/Cars/developers/docs/DealerSMS.html
+  baseURL: https://www.cargurus.com
+  tags:
+  - SMS Messaging
+  - Dealer Communication
+  - Consumer Engagement
+  properties:
+  - type: Documentation
+    url: https://www.cargurus.com/Cars/developers/docs/DealerSMS.html
+  - type: Authentication
+    url: https://www.cargurus.com/Cars/developers/
+- aid: cargurus-dealer:car-selector-api
+  name: CarGurus Car Selector API
+  description: Provides vehicle make and model lookup capabilities and generates search result URLs for new and
+    used vehicle listings, supporting affiliate and partner integration for vehicle shopping search experiences.
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.cargurus.com/Cars/developers/docs/CarSelector.html
+  baseURL: https://www.cargurus.com
+  tags:
+  - Vehicle Search
+  - Make Model Lookup
+  - Affiliate Integration
+  properties:
+  - type: Documentation
+    url: https://www.cargurus.com/Cars/developers/docs/CarSelector.html
+- aid: cargurus-dealer:sem-ad-url-generator-api
+  name: CarGurus SEM Ad Landing Page URL Generator API
+  description: Generates targeted landing page URLs for Search Engine Marketing ad campaigns, enabling partners
+    to create deep-linked pages pointing to relevant vehicle search results on CarGurus.
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.cargurus.com/Cars/developers/docs/SemAdUrlGenerator.html
+  baseURL: https://www.cargurus.com
+  tags:
+  - SEM
+  - Advertising
+  - Landing Pages
+  properties:
+  - type: Documentation
+    url: https://www.cargurus.com/Cars/developers/docs/SemAdUrlGenerator.html
+  - type: Authentication
+    url: https://www.cargurus.com/Cars/developers/
+- aid: cargurus-dealer:sem-filter-values-api
+  name: CarGurus SEM Filter Values API
+  description: Supplies filter values used for constructing SEM campaigns and search configurations on the CarGurus
+    platform, supporting dynamic ad targeting and search filter integration.
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.cargurus.com/Cars/developers/docs/SemFilterValues.html
+  baseURL: https://www.cargurus.com
+  tags:
+  - SEM
+  - Search Filters
+  - Advertising
+  properties:
+  - type: Documentation
+    url: https://www.cargurus.com/Cars/developers/docs/SemFilterValues.html
+  - type: Authentication
+    url: https://www.cargurus.com/Cars/developers/
+- aid: cargurus-dealer:body-type-groups-api
+  name: CarGurus Body Type Groups API
+  description: Provides vehicle body type classification and translation data, mapping CarGurus body type identifiers
+    to human-readable labels for use in vehicle search and filtering interfaces.
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.cargurus.com/Cars/developers/docs/BodyTypeGroupTranslations.html
+  baseURL: https://www.cargurus.com
+  tags:
+  - Vehicle Classification
+  - Body Types
+  - Reference Data
+  properties:
+  - type: Documentation
+    url: https://www.cargurus.com/Cars/developers/docs/BodyTypeGroupTranslations.html
 common:
 - type: AgenticAccess
   url: agentic-access/cargurus-dealer-agentic-access.yml
@@ -174,6 +295,8 @@ common:
   url: plans/cargurus-dealer-plans-pricing.yml
 - type: Blog
   url: https://dealers.cargurus.com/drc
+- type: Blog
+  url: https://cargurus.dev/
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
