@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: CarGurus Developer APIs Car Selector API
-  description: 'Documented HTTP APIs published by CarGurus under the /Cars/api/ path. Four surfaces are described here: the open (no-auth) Car Selector API for building new/used listing search widgets, and three partner/dealer-gated APIs - Instant Market Value (IMV), Dealer Reviews, and Dealer Stats. The gated APIs authenticate with an appId and authToken issued by CarGurus and are passed as query parameters alongside a JSON body. Endpoint paths, methods, and the Car Selector, IMV, and Dealer Reviews schemas are taken directly from CarGurus developer documentation; the Dealer Stats response is modeled from CarGurus documentation and published examples (endpointsModeled). CarGurus does not publish a public inventory-listings pull API - dealer inventory is ingested via inventory feeds (feed providers / IMT) - and leads are delivered to dealer CRMs rather than exposed here.'
+  title: CarGurus Developer Car Selector API
+  description: Documented HTTP APIs published by CarGurus under the /Cars/api/ path.
   version: '1.0'
   contact:
     name: CarGurus Developers
@@ -111,23 +111,15 @@ paths:
           description: CarGurus listing search results page.
 components:
   schemas:
-    ListModelsResponse:
+    Entity:
       type: object
       properties:
-        success:
+        id:
+          type: string
+        name:
+          type: string
+        isPopular:
           type: boolean
-        errors:
-          type: array
-          items:
-            type: string
-        searchType:
-          type: string
-        makeId:
-          type: string
-        models:
-          type: array
-          items:
-            $ref: '#/components/schemas/Entity'
     ListMakesResponse:
       type: object
       properties:
@@ -147,15 +139,23 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Distance'
-    Entity:
+    ListModelsResponse:
       type: object
       properties:
-        id:
-          type: string
-        name:
-          type: string
-        isPopular:
+        success:
           type: boolean
+        errors:
+          type: array
+          items:
+            type: string
+        searchType:
+          type: string
+        makeId:
+          type: string
+        models:
+          type: array
+          items:
+            $ref: '#/components/schemas/Entity'
     Distance:
       type: object
       properties:

@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: CarGurus Developer APIs Car Selector Instant Market Value API
-  description: 'Documented HTTP APIs published by CarGurus under the /Cars/api/ path. Four surfaces are described here: the open (no-auth) Car Selector API for building new/used listing search widgets, and three partner/dealer-gated APIs - Instant Market Value (IMV), Dealer Reviews, and Dealer Stats. The gated APIs authenticate with an appId and authToken issued by CarGurus and are passed as query parameters alongside a JSON body. Endpoint paths, methods, and the Car Selector, IMV, and Dealer Reviews schemas are taken directly from CarGurus developer documentation; the Dealer Stats response is modeled from CarGurus documentation and published examples (endpointsModeled). CarGurus does not publish a public inventory-listings pull API - dealer inventory is ingested via inventory feeds (feed providers / IMT) - and leads are delivered to dealer CRMs rather than exposed here.'
+  title: CarGurus Developer Instant Market Value API
+  description: Documented HTTP APIs published by CarGurus under the /Cars/api/ path.
   version: '1.0'
   contact:
     name: CarGurus Developers
@@ -50,35 +50,6 @@ paths:
                 $ref: '#/components/schemas/ImvResponse'
 components:
   schemas:
-    ImvRequestListing:
-      type: object
-      properties:
-        vin:
-          type: string
-        make:
-          type: string
-        model:
-          type: string
-        trim:
-          type: string
-        year:
-          type: integer
-        transmission:
-          type: string
-        mileage:
-          type: integer
-        options:
-          type: string
-          description: Comma separated string of available car options.
-        is_certified:
-          type: boolean
-        price:
-          type: integer
-        postal_code:
-          type: string
-        last_updated_timestamp:
-          type: string
-          description: ISO-8601 formatted timestamp with UTC offset.
     ImvResponseListing:
       type: object
       properties:
@@ -136,3 +107,32 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ImvResponseListing'
+    ImvRequestListing:
+      type: object
+      properties:
+        vin:
+          type: string
+        make:
+          type: string
+        model:
+          type: string
+        trim:
+          type: string
+        year:
+          type: integer
+        transmission:
+          type: string
+        mileage:
+          type: integer
+        options:
+          type: string
+          description: Comma separated string of available car options.
+        is_certified:
+          type: boolean
+        price:
+          type: integer
+        postal_code:
+          type: string
+        last_updated_timestamp:
+          type: string
+          description: ISO-8601 formatted timestamp with UTC offset.

@@ -1,10 +1,7 @@
 {
   "provider": "cargurus-dealer",
   "sources": [
-    "cargurus-dealer-car-selector-api-openapi.yml",
-    "cargurus-dealer-dealer-reviews-api-openapi.yml",
-    "cargurus-dealer-dealer-stats-api-openapi.yml",
-    "cargurus-dealer-instant-market-value-api-openapi.yml"
+    "_original/cargurus-dealer-openapi.yml"
   ],
   "outputs": [
     "cargurus-dealer-car-selector-api-openapi.yml",
@@ -15,6 +12,15 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "cargurus-dealer-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "cargurus-dealer-car-selector-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "cargurus-dealer-dealer-reviews-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "cargurus-dealer-dealer-stats-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "cargurus-dealer-instant-market-value-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

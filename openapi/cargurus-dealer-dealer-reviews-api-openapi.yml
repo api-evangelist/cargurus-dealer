@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: CarGurus Developer APIs Car Selector Dealer Reviews API
-  description: 'Documented HTTP APIs published by CarGurus under the /Cars/api/ path. Four surfaces are described here: the open (no-auth) Car Selector API for building new/used listing search widgets, and three partner/dealer-gated APIs - Instant Market Value (IMV), Dealer Reviews, and Dealer Stats. The gated APIs authenticate with an appId and authToken issued by CarGurus and are passed as query parameters alongside a JSON body. Endpoint paths, methods, and the Car Selector, IMV, and Dealer Reviews schemas are taken directly from CarGurus developer documentation; the Dealer Stats response is modeled from CarGurus documentation and published examples (endpointsModeled). CarGurus does not publish a public inventory-listings pull API - dealer inventory is ingested via inventory feeds (feed providers / IMT) - and leads are delivered to dealer CRMs rather than exposed here.'
+  title: CarGurus Developer Dealer Reviews API
+  description: Documented HTTP APIs published by CarGurus under the /Cars/api/ path.
   version: '1.0'
   contact:
     name: CarGurus Developers
@@ -48,12 +48,18 @@ paths:
                 $ref: '#/components/schemas/DealerReviewsResponse'
 components:
   schemas:
-    DealerReviewsRequest:
+    ManagementResponse:
       type: object
       properties:
-        dealer_id:
+        response:
           type: string
-          description: The CarGurus dealer id, found in the dealer URL (for example sp61504).
+        creation_timestamp:
+          type: string
+        status:
+          type: string
+          enum:
+          - UNDER_REVIEW
+          - APPROVED
     DealerReviewsResponse:
       type: object
       properties:
@@ -69,6 +75,19 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Review'
+    DealerReviewsRequest:
+      type: object
+      properties:
+        dealer_id:
+          type: string
+          description: The CarGurus dealer id, found in the dealer URL (for example sp61504).
+    ApiError:
+      type: object
+      properties:
+        error_code:
+          type: integer
+        description:
+          type: string
     Dealer:
       type: object
       properties:
@@ -77,25 +96,6 @@ components:
         name:
           type: string
         url:
-          type: string
-    ManagementResponse:
-      type: object
-      properties:
-        response:
-          type: string
-        creation_timestamp:
-          type: string
-        status:
-          type: string
-          enum:
-          - UNDER_REVIEW
-          - APPROVED
-    ApiError:
-      type: object
-      properties:
-        error_code:
-          type: integer
-        description:
           type: string
     Review:
       type: object
