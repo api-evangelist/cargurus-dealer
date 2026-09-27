@@ -164,7 +164,6 @@ apis:
     detail page clicks, and lead generation metrics across email, phone, chat, and SMS channels.
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://www.cargurus.com/Cars/developers/docs/DealerStatsV3Daily.html
-  baseURL: https://www.cargurus.com
   tags:
   - Dealer Analytics
   - Inventory Statistics
@@ -180,7 +179,6 @@ apis:
     on VIN, make, model, trim, mileage, and location data, enabling real-time price comparison and market positioning.
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://www.cargurus.com/Cars/developers/docs/InstantMarketValue.html
-  baseURL: https://www.cargurus.com
   tags:
   - Vehicle Pricing
   - Market Valuation
@@ -196,7 +194,6 @@ apis:
     and dealer management responses, supporting reputation management and review display integrations.
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://www.cargurus.com/Cars/developers/docs/DealerReviews.html
-  baseURL: https://www.cargurus.com
   tags:
   - Dealer Reviews
   - Reputation Management
@@ -212,7 +209,6 @@ apis:
     1600 characters and 10 media attachments for direct dealer-to-consumer communication through the CarGurus platform.
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://www.cargurus.com/Cars/developers/docs/DealerSMS.html
-  baseURL: https://www.cargurus.com
   tags:
   - SMS Messaging
   - Dealer Communication
@@ -228,7 +224,6 @@ apis:
     used vehicle listings, supporting affiliate and partner integration for vehicle shopping search experiences.
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://www.cargurus.com/Cars/developers/docs/CarSelector.html
-  baseURL: https://www.cargurus.com
   tags:
   - Vehicle Search
   - Make Model Lookup
@@ -242,7 +237,6 @@ apis:
     to create deep-linked pages pointing to relevant vehicle search results on CarGurus.
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://www.cargurus.com/Cars/developers/docs/SemAdUrlGenerator.html
-  baseURL: https://www.cargurus.com
   tags:
   - SEM
   - Advertising
@@ -258,7 +252,6 @@ apis:
     platform, supporting dynamic ad targeting and search filter integration.
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://www.cargurus.com/Cars/developers/docs/SemFilterValues.html
-  baseURL: https://www.cargurus.com
   tags:
   - SEM
   - Search Filters
@@ -274,7 +267,6 @@ apis:
     to human-readable labels for use in vehicle search and filtering interfaces.
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://www.cargurus.com/Cars/developers/docs/BodyTypeGroupTranslations.html
-  baseURL: https://www.cargurus.com
   tags:
   - Vehicle Classification
   - Body Types
