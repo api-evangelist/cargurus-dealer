@@ -61,6 +61,45 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ImvResponseListing'
+    ImvRequest:
+      type: object
+      properties:
+        listings:
+          type: array
+          items:
+            $ref: '#/components/schemas/ImvRequestListing'
+    ImvResponseListing:
+      type: object
+      properties:
+        success:
+          type: boolean
+        error:
+          $ref: '#/components/schemas/ApiError'
+        vin:
+          type: string
+        instant_market_value:
+          type: integer
+        cg_make_name:
+          type: string
+        cg_model_name:
+          type: string
+        cg_year:
+          type: integer
+        cg_trim_name:
+          type: string
+        cg_entity_id:
+          type: string
+        rating:
+          type: string
+          enum:
+          - GREAT_PRICE
+          - GOOD_PRICE
+          - OK_PRICE
+          - FAIR_PRICE
+          - POOR_PRICE
+          - OVERPRICED
+          - OUTLIER
+          - NA
     ImvRequestListing:
       type: object
       properties:
@@ -97,42 +136,3 @@ components:
           type: integer
         description:
           type: string
-    ImvResponseListing:
-      type: object
-      properties:
-        success:
-          type: boolean
-        error:
-          $ref: '#/components/schemas/ApiError'
-        vin:
-          type: string
-        instant_market_value:
-          type: integer
-        cg_make_name:
-          type: string
-        cg_model_name:
-          type: string
-        cg_year:
-          type: integer
-        cg_trim_name:
-          type: string
-        cg_entity_id:
-          type: string
-        rating:
-          type: string
-          enum:
-          - GREAT_PRICE
-          - GOOD_PRICE
-          - OK_PRICE
-          - FAIR_PRICE
-          - POOR_PRICE
-          - OVERPRICED
-          - OUTLIER
-          - NA
-    ImvRequest:
-      type: object
-      properties:
-        listings:
-          type: array
-          items:
-            $ref: '#/components/schemas/ImvRequestListing'

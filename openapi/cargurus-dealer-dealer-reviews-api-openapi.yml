@@ -48,6 +48,27 @@ paths:
                 $ref: '#/components/schemas/DealerReviewsResponse'
 components:
   schemas:
+    DealerReviewsResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        error:
+          $ref: '#/components/schemas/ApiError'
+        dealer:
+          $ref: '#/components/schemas/Dealer'
+        manage_reviews_url:
+          type: string
+        reviews:
+          type: array
+          items:
+            $ref: '#/components/schemas/Review'
+    DealerReviewsRequest:
+      type: object
+      properties:
+        dealer_id:
+          type: string
+          description: The CarGurus dealer id, found in the dealer URL (for example sp61504).
     Dealer:
       type: object
       properties:
@@ -56,13 +77,6 @@ components:
         name:
           type: string
         url:
-          type: string
-    ApiError:
-      type: object
-      properties:
-        error_code:
-          type: integer
-        description:
           type: string
     Review:
       type: object
@@ -89,27 +103,6 @@ components:
           type: string
         management_response:
           $ref: '#/components/schemas/ManagementResponse'
-    DealerReviewsResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-        error:
-          $ref: '#/components/schemas/ApiError'
-        dealer:
-          $ref: '#/components/schemas/Dealer'
-        manage_reviews_url:
-          type: string
-        reviews:
-          type: array
-          items:
-            $ref: '#/components/schemas/Review'
-    DealerReviewsRequest:
-      type: object
-      properties:
-        dealer_id:
-          type: string
-          description: The CarGurus dealer id, found in the dealer URL (for example sp61504).
     ManagementResponse:
       type: object
       properties:
@@ -122,3 +115,10 @@ components:
           enum:
           - UNDER_REVIEW
           - APPROVED
+    ApiError:
+      type: object
+      properties:
+        error_code:
+          type: integer
+        description:
+          type: string

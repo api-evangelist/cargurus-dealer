@@ -48,6 +48,24 @@ paths:
                 $ref: '#/components/schemas/DealerStatsResponse'
 components:
   schemas:
+    DailyStat:
+      type: object
+      properties:
+        date:
+          type: string
+        leads:
+          type: integer
+        clicks:
+          type: integer
+        impressions:
+          type: integer
+    ApiError:
+      type: object
+      properties:
+        error_code:
+          type: integer
+        description:
+          type: string
     DealerStatsResponse:
       type: object
       description: Dealer inventory performance statistics. Fields modeled from CarGurus documentation and published examples (endpointsModeled).
@@ -84,21 +102,3 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/DailyStat'
-    ApiError:
-      type: object
-      properties:
-        error_code:
-          type: integer
-        description:
-          type: string
-    DailyStat:
-      type: object
-      properties:
-        date:
-          type: string
-        leads:
-          type: integer
-        clicks:
-          type: integer
-        impressions:
-          type: integer
