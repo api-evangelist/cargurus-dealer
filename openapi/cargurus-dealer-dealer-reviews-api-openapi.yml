@@ -48,27 +48,6 @@ paths:
                 $ref: '#/components/schemas/DealerReviewsResponse'
 components:
   schemas:
-    DealerReviewsResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-        error:
-          $ref: '#/components/schemas/ApiError'
-        dealer:
-          $ref: '#/components/schemas/Dealer'
-        manage_reviews_url:
-          type: string
-        reviews:
-          type: array
-          items:
-            $ref: '#/components/schemas/Review'
-    DealerReviewsRequest:
-      type: object
-      properties:
-        dealer_id:
-          type: string
-          description: The CarGurus dealer id, found in the dealer URL (for example sp61504).
     Dealer:
       type: object
       properties:
@@ -122,3 +101,24 @@ components:
           type: integer
         description:
           type: string
+    DealerReviewsResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        error:
+          $ref: '#/components/schemas/ApiError'
+        dealer:
+          $ref: '#/components/schemas/Dealer'
+        manage_reviews_url:
+          type: string
+        reviews:
+          type: array
+          items:
+            $ref: '#/components/schemas/Review'
+    DealerReviewsRequest:
+      type: object
+      properties:
+        dealer_id:
+          type: string
+          description: The CarGurus dealer id, found in the dealer URL (for example sp61504).

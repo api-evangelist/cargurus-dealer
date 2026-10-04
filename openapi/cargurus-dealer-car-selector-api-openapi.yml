@@ -120,6 +120,23 @@ components:
           type: string
         isPopular:
           type: boolean
+    ListModelsResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        errors:
+          type: array
+          items:
+            type: string
+        searchType:
+          type: string
+        makeId:
+          type: string
+        models:
+          type: array
+          items:
+            $ref: '#/components/schemas/Entity'
     ListMakesResponse:
       type: object
       properties:
@@ -139,23 +156,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Distance'
-    ListModelsResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-        errors:
-          type: array
-          items:
-            type: string
-        searchType:
-          type: string
-        makeId:
-          type: string
-        models:
-          type: array
-          items:
-            $ref: '#/components/schemas/Entity'
     Distance:
       type: object
       properties:

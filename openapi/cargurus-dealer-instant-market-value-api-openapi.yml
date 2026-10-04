@@ -68,6 +68,35 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ImvRequestListing'
+    ImvRequestListing:
+      type: object
+      properties:
+        vin:
+          type: string
+        make:
+          type: string
+        model:
+          type: string
+        trim:
+          type: string
+        year:
+          type: integer
+        transmission:
+          type: string
+        mileage:
+          type: integer
+        options:
+          type: string
+          description: Comma separated string of available car options.
+        is_certified:
+          type: boolean
+        price:
+          type: integer
+        postal_code:
+          type: string
+        last_updated_timestamp:
+          type: string
+          description: ISO-8601 formatted timestamp with UTC offset.
     ImvResponseListing:
       type: object
       properties:
@@ -100,35 +129,6 @@ components:
           - OVERPRICED
           - OUTLIER
           - NA
-    ImvRequestListing:
-      type: object
-      properties:
-        vin:
-          type: string
-        make:
-          type: string
-        model:
-          type: string
-        trim:
-          type: string
-        year:
-          type: integer
-        transmission:
-          type: string
-        mileage:
-          type: integer
-        options:
-          type: string
-          description: Comma separated string of available car options.
-        is_certified:
-          type: boolean
-        price:
-          type: integer
-        postal_code:
-          type: string
-        last_updated_timestamp:
-          type: string
-          description: ISO-8601 formatted timestamp with UTC offset.
     ApiError:
       type: object
       properties:
