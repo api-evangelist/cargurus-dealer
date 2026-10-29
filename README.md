@@ -1,4 +1,4 @@
-# CarGurus (cargurus-dealer)
+# CarGurus
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,89 +64,118 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-CarGurus is an automotive shopping and dealer marketing platform that connects car shoppers with franchise and independent dealers through data-driven listings, its Instant Market Value (IMV) deal ratings, and dealer reviews. For developers and partners, CarGurus publishes a small, purpose-built set of HTTP APIs under `/Cars/api/` rather than a broad open developer platform.
+CarGurus is an automotive shopping and dealer marketing platform that connects car shoppers with franchise and independent dealers through data-driven listings, its Instant Market Value (IMV) deal ratings, and dealer reviews. For developers and partners, CarGurus publishes a small set of documented HTTP APIs under /Cars/api/ - an open Car Selector API for building new/used search widgets, and partner/dealer-gated APIs for Instant Market Value, dealer reviews, and dealer performance statistics (leads, VDPs, SRPs, impressions). Dealer inventory itself is ingested through inventory feeds (feed providers / IMT), not a documented public pull API, and leads are delivered to dealer CRMs rather than exposed as a public REST endpoint.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/cargurus-dealer/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/cargurus-dealer/refs/heads/main/apis.yml)
+**Areas:** Automotive · Marketplace · Car Listings · Dealers · Vehicle Pricing · Reviews · Inventory
 
-## Access model (read this first)
+## CarGurus on APIs.io
 
-CarGurus does not sell metered, self-serve API access. Access is tiered by relationship:
+Everything profiled for CarGurus is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/cargurus-dealer/](https://apis.io/providers/cargurus-dealer/)** — or go straight to one of the APIs or properties below.
 
-- **Car Selector API — open.** No `appId` or `authToken` required. Intended for building new/used listing search widgets that redirect shoppers into CarGurus search results.
-- **Instant Market Value, Dealer Reviews, and Dealer Stats APIs — gated.** Each requires an `appId` and `authToken` issued by CarGurus. These are made available to dealers under a CarGurus subscription and to approved analytics/marketing partners (for example vAuto, Clarivoy, Vistadash).
-- **Inventory ingestion is feed-based, not a public pull API.** Dealer inventory reaches CarGurus through inventory feeds (feed providers / IMT), and **leads are delivered into dealer CRMs**, not exposed as a public REST endpoint. This entry does **not** fabricate inventory- or lead-retrieval endpoints — only the four documented API surfaces are described.
+### APIs (12)
 
-Dealer subscription packages and partner terms are quote-based and not publicly listed; CarGurus operates a published Dealer Pricing Policy but does not disclose per-tier monthly rates.
+- [CarGurus Car Selector API](https://apis.io/apis/cargurus-dealer/cargurus-dealer-car-selector-api/) — Open API for building new/used listing search widgets.
+- [CarGurus Dealer Reviews API](https://apis.io/apis/cargurus-dealer/cargurus-dealer-dealer-reviews-api/) — Retrieve sales reviews for a specific dealer.
+- [CarGurus Dealer Stats API](https://apis.io/apis/cargurus-dealer/cargurus-dealer-dealer-stats-api/) — Retrieve dealer inventory performance statistics.
+- [CarGurus Instant Market Value API](https://apis.io/apis/cargurus-dealer/cargurus-dealer-instant-market-value-api/) — Retrieve CarGurus Instant Market Value and deal rating for cars.
+- [CarGurus Dealer Stats API](https://apis.io/apis/cargurus-dealer/dealer-stats-api/) — Retrieves daily performance statistics for dealer inventory including search result page views, vehicle detail page clicks, and lead generation metrics…
+- [CarGurus Instant Market Value API](https://apis.io/apis/cargurus-dealer/instant-market-value-api/) — Returns vehicle market valuations and deal ratings (Great Price, Good Price, Fair Price, etc.) based on VIN, make, model, trim, mileage, and location data,…
+- [CarGurus Dealer Reviews API](https://apis.io/apis/cargurus-dealer/dealer-reviews-api/) — Provides access to consumer dealer reviews including ratings, review text, author information, timestamps, and dealer management responses, supporting…
+- [CarGurus Dealer SMS API](https://apis.io/apis/cargurus-dealer/dealer-sms-api/) — Enables dealers to send SMS and MMS messages to consumers, supporting text and media content up to 1600 characters and 10 media attachments for direct…
+- [CarGurus Car Selector API](https://apis.io/apis/cargurus-dealer/car-selector-api/) — Provides vehicle make and model lookup capabilities and generates search result URLs for new and used vehicle listings, supporting affiliate and partner…
+- [CarGurus SEM Ad Landing Page URL Generator API](https://apis.io/apis/cargurus-dealer/sem-ad-url-generator-api/) — Generates targeted landing page URLs for Search Engine Marketing ad campaigns, enabling partners to create deep-linked pages pointing to relevant vehicle…
+- [CarGurus SEM Filter Values API](https://apis.io/apis/cargurus-dealer/sem-filter-values-api/) — Supplies filter values used for constructing SEM campaigns and search configurations on the CarGurus platform, supporting dynamic ad targeting and search…
+- [CarGurus Body Type Groups API](https://apis.io/apis/cargurus-dealer/body-type-groups-api/) — Provides vehicle body type classification and translation data, mapping CarGurus body type identifiers to human-readable labels for use in vehicle search…
 
-## Tags
+### Published properties
 
-- Automotive
-- Marketplace
-- Car Listings
-- Dealer
-- Vehicle Pricing
-- Reviews
-- Inventory
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## Timestamps
+#### Agentic access (1)
 
-- **Created:** 2026-07-10
-- **Modified:** 2026-07-10
+Which operations an agent can call, which act, and which need a human in the loop.
 
-## APIs
+- [Cargurus Dealer Agentic Access](https://apis.io/agentic-access/cargurus-dealer/cargurus-dealer-agentic-access/)
 
-### CarGurus Car Selector API
+#### Collections (3)
 
-Open (no-auth) API for building your own new/used listing search widget. List available makes and models plus search distances, then construct a listing search redirect URL.
+Postman and Open Collection request collections.
 
-- **Human URL:** [CarSelector.html](https://www.cargurus.com/Cars/developers/docs/CarSelector.html)
-- **Base URL:** `https://www.cargurus.com/Cars/api/1.0`
-- Endpoints: `GET /carselector/listMakes.action`, `GET /carselector/listModels.action`, `GET /carselector/listingSearch.action`
+- [CarGurus Developer APIs Car Selector API](https://apis.io/collections/cargurus-dealer/open-cargurus-dealer-car-selector-api/)
+- [CarGurus Developer APIs Car Selector Dealer Stats API](https://apis.io/collections/cargurus-dealer/open-cargurus-dealer-dealer-stats-api/)
+- [CarGurus Developer APIs Car Selector Instant Market Value API](https://apis.io/collections/cargurus-dealer/open-cargurus-dealer-instant-market-value-api/)
 
-### CarGurus Instant Market Value API
+#### Security (1)
 
-Partner/dealer-gated API to retrieve the CarGurus Instant Market Value for one or more cars, plus the deal rating (`GREAT_PRICE`, `GOOD_PRICE`, `FAIR_PRICE`, `OVERPRICED`, and more) and normalized make/model/trim/options in the CarGurus ontology.
+Authentication, trust centre, and vulnerability disclosure.
 
-- **Human URL:** [InstantMarketValue.html](https://www.cargurus.com/Cars/developers/docs/InstantMarketValue.html)
-- **Base URL:** `https://www.cargurus.com/Cars/api/1.0`
-- Endpoint: `POST /imvRequest.action` (query params `appId`, `authToken`, `body`)
+- [Cargurus Dealer Domain Security](https://apis.io/security/cargurus-dealer/cargurus-dealer-domain-security/)
 
-### CarGurus Dealer Reviews API
+#### Plans and pricing (1)
 
-Partner/dealer-gated API to retrieve the sales reviews for a specific CarGurus dealer, including 1-5 star ratings, author, body, moderation status, and optional dealership management responses. External reuse is limited to 160 characters with attribution and a link back to CarGurus.
+Published plans, tiers and prices.
 
-- **Human URL:** [DealerReviews.html](https://www.cargurus.com/Cars/developers/docs/DealerReviews.html)
-- **Base URL:** `https://www.cargurus.com/Cars/api/1.0`
-- Endpoint: `POST /dealerReviewsRequest.action` (query params `appId`, `authToken`, `body`)
+- [Cargurus Dealer Plans Pricing](https://apis.io/plans/cargurus-dealer/cargurus-dealer-plans-pricing/)
 
-### CarGurus Dealer Stats API
+## Where to find this API
 
-Partner/dealer-gated API (v2.0) to retrieve inventory performance statistics for a dealer — phone/chat/SMS/email leads, VDPs, SRPs, printouts, map/website/social clicks, impressions, and a `daily_stats` time series. Consumed by dealer analytics partners. Response fields are modeled from CarGurus documentation and published examples.
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-- **Human URL:** [DealerStatsV2Daily.html](https://www.cargurus.com/Cars/developers/docs/DealerStatsV2Daily.html)
-- **Base URL:** `https://www.cargurus.com/Cars/api/2.0`
-- Endpoint: `POST /dealerStatsRequest.action` (query params `appId`, `authToken`, `body`)
-
-## Artifacts
-
-- [OpenAPI](openapi/cargurus-dealer-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Plans](plans/cargurus-dealer-plans-pricing.yml)
-
-## WebSocket review
-
-CarGurus does **not** expose a documented public WebSocket API. Every documented developer API is request/response HTTP over HTTPS (GET for Car Selector, POST for IMV/Reviews/Stats). See [review.yml](review.yml).
-
-## Common Properties
-
-- [GitHub Organization](https://github.com/cargurus)
-- [LinkedIn](https://www.linkedin.com/company/cargurus)
 - [Website](https://www.cargurus.com)
-- [Developer Portal](https://www.cargurus.com/Cars/developers/)
 - [Documentation](https://www.cargurus.com/Cars/developers/docs/CarSelector.html)
-- [Sign Up (Dealers)](https://dealers.cargurus.com/)
-- [Plans](plans/cargurus-dealer-plans-pricing.yml)
+- [Sign up](https://dealers.cargurus.com/)
+- [Blog](https://dealers.cargurus.com/drc)
+- [GitHub](https://github.com/cargurus)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 28.3** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 57.1 |
+| Contract quality | 44.4 |
+| Contract governance | 0.0 |
+| Operational transparency | 2.6 |
+| Developer ergonomics | 40.5 |
+| Access clarity | 21.1 |
+
+**Agent readiness 17.3** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 11.8** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/cargurus-dealer/](https://apis.io/providers/cargurus-dealer/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for CarGurus: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/cargurus-dealer/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
